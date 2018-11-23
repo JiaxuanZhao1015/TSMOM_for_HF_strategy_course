@@ -13301,7 +13301,7 @@ Takes long or short position on an asset by only looking back at its own perform
 <h1 id="1.-Trading-Strategy---TSMOM-with-Volatility-Scaling-(1984---2009)">1. Trading Strategy - TSMOM with Volatility Scaling (1984 - 2009)<a class="anchor-link" href="#1.-Trading-Strategy---TSMOM-with-Volatility-Scaling-(1984---2009)">&#182;</a></h1>
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13380,23 +13380,6 @@ Takes long or short position on an asset by only looking back at its own perform
 </div>
 
 </div></div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[147]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">summary_stats</span> <span class="o">=</span> <span class="n">summary_stats</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<span class="n">futures_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/futures_list.csv&quot;</span><span class="p">)</span>
-<span class="nb">all</span> <span class="o">=</span> <span class="n">summary_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">futures_list</span><span class="p">)</span>
-<span class="nb">all</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ASSET_CLASS&quot;</span><span class="p">,</span> <span class="s2">&quot;FUTURES&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">del</span> <span class="nb">all</span><span class="p">[</span><span class="s1">&#39;Asset&#39;</span><span class="p">],</span> <span class="nb">all</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13404,7 +13387,7 @@ Takes long or short position on an asset by only looking back at its own perform
 
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[148]:</div>
@@ -14543,7 +14526,7 @@ Takes long or short position on an asset by only looking back at its own perform
 </div>
 </div>
 
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14561,7 +14544,8 @@ Takes long or short position on an asset by only looking back at its own perform
 <div class="prompt input_prompt">In&nbsp;[167]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pnl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">std_index</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># basic setting</span>
+<span class="n">pnl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">std_index</span><span class="p">)</span>
 <span class="n">leverage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">std_index</span><span class="p">)</span>
 <span class="n">strategy_cumm_rtns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">std_index</span><span class="p">)</span>
 <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.</span>
@@ -14578,7 +14562,8 @@ Takes long or short position on an asset by only looking back at its own perform
 <div class="prompt input_prompt">In&nbsp;[168]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">oo</span> <span class="ow">in</span> <span class="n">mth_index</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># computing the retures of TSMOM</span>
+<span class="k">for</span> <span class="n">oo</span> <span class="ow">in</span> <span class="n">mth_index</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">mth_index</span><span class="p">[</span><span class="n">oo</span><span class="p">],</span> <span class="n">mth_index_vol</span><span class="p">[</span><span class="n">oo</span><span class="o">+</span><span class="s2">&quot;_Vol&quot;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;returns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">oo</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">look_back</span><span class="p">)</span>
     
@@ -14615,26 +14600,6 @@ Takes long or short position on an asset by only looking back at its own perform
     <span class="n">ret_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;pnl&#39;</span><span class="p">][</span><span class="mi">13</span><span class="p">:])</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span>
     <span class="n">ret_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">strategy_cumm_rtns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">strategy_cumm_rtns</span><span class="p">,</span> <span class="n">ret_index</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pnl</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">leverage</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">leverage</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">strategy_cumm_rtns</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pnl</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;port_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">skipna</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">Strategy</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;port_avg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">Strategy</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;TSMOM with Vol&quot;</span>
-<span class="n">dataport_index</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;port_avg&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -14709,7 +14674,7 @@ Calmar ratio =  1.1254261678313655
 </div>
 </div>
 
-</div><div class="fragment">
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[185]:</div>
@@ -14887,14 +14852,14 @@ height=3289
 </div>
 </div>
 
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Further-Analysis">Further Analysis<a class="anchor-link" href="#Further-Analysis">&#182;</a></h1>
+<h2 id="1.3-Further-Analysis">1.3 Further Analysis<a class="anchor-link" href="#1.3-Further-Analysis">&#182;</a></h2>
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[187]:</div>
@@ -14931,7 +14896,7 @@ height=253
 </div>
 </div>
 
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[188]:</div>
@@ -14971,27 +14936,7 @@ height=281
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[191]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;port_avg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;port_avg&#39;</span><span class="p">)</span>
-<span class="n">res</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[193]:</div>
@@ -15053,7 +14998,7 @@ height=1161
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">SPX</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/spx.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -15066,7 +15011,7 @@ height=1161
 </div>
 </div>
 
-</div></section><section>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[237]:</div>
@@ -15104,7 +15049,7 @@ height=263
 </div>
 </div>
 
-</div></section></section>
+</div></div></section></section>
 </div>
 </div>
 
